@@ -1,0 +1,285 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script src="js/ajax-utils.js"> </script> 
+<script src="js/trial1.js"> </script> 
+<style> 
+
+ {box-sizing: border-box}
+body {font-family: "Lato", sans-serif;}
+
+/* Style the tab */
+.tab {
+  float: top;
+  border: 1px solid black;
+  background-color: #f1f1f1;
+  width:20%;
+  left:200px;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  display: block;
+  background-color: inherit;
+  color: black;
+  padding: 2px 1px;
+  /*width: 100%;*/
+  border: 2px solid black;;
+  outline: none;
+  text-align: left;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current "tab button" class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  float: left;
+  padding: 0px 12px;
+  border-left: none;
+}
+
+/*Giving styling to the svg div*/
+#mySVG {
+    width :840px;
+    height:400px;
+    position: relative;
+    top: 0;
+    left: 0;
+    background: white;
+    
+
+}
+
+/*Styling the collapsible menu*/
+.collapsible {
+  width: 20px;
+  resize: both;
+  overflow: auto;
+  position: absolute; 
+  top: 160px;
+  left: 200px;
+  background:   #E2E8EF;
+  border: 2px solid;
+  border-color :black;
+  margin-left: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+  /*font-size: 10px;*/
+  outline: 5px  black;
+  outline-offset: 3px
+  padding-left: 90px;
+  text-align: center;
+  
+}
+
+
+/*Information display div 1*/
+#infoDiv1 {
+  width: 200px;
+  resize: both;
+  overflow: auto;
+  position: absolute; 
+  top: 70px;
+  left: 1000px;
+  background:   #E2E8EF;
+  border: 2px solid;
+  border-color :black;
+  margin-left: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+  /*font-size: 5px;*/
+  outline: 5px  black;
+  outline-offset: 3px
+  padding-left: 90px;
+  text-align: center;
+  
+}
+
+/*Information display div 1*/
+#infoDiv2 {
+  width: 200px;
+  resize: both;
+  overflow: auto;
+  position: absolute; 
+  top: 400px;
+  left: 1000px;
+  background:   #E2E8EF;
+  border: 2px solid;
+  border-color :black;
+  margin-left: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+  /*font-size: 5px;*/
+  outline: 5px black;
+  outline-offset: 3px
+  padding-left: 90px;
+  text-align: center;
+  
+}
+
+.collapsible {
+  background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width: 25%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+}
+
+.active, .collapsible:hover {
+  background-color: #F08080;
+}
+
+/* Style the collapsible content. Note: hidden by default */
+#content {
+   width: 410px;
+  resize: both;
+  overflow: auto;
+  position: absolute; 
+  top: 210px;
+  left: 200px;
+
+  
+  margin-left: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+  /*font-size: 10px;*/
+  outline-offset: 3px
+  padding-left: 90px;
+  text-align: center;
+  padding: 0 18px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+  background-color: #f1f1f1;
+}
+
+/*Placing the svg content inside*/
+.containDiv {
+  width: 250px;
+  height: 270px;
+  float: left;
+  position: relative;
+  margin-left: 35px;
+  margin-right: 30px;
+}
+
+ul, #myUL {
+  list-style-type: none;
+}
+
+#myUL {
+  margin: 0;
+  padding: 0;
+  width: 410px;
+  resize: both;
+  overflow: auto;
+  position: absolute; 
+  top: 160px;
+  left: 200px;
+  background:   #E2E8EF;
+  border: 2px solid;
+  border-color :black;
+  margin-left: 10px;
+  font-family: Arial, Helvetica, sans-serif;*/
+  font-size: 10px;
+  outline: 5px black;
+  outline-offset: 3px
+  padding-left: 90px;
+  text-align: center;
+}
+
+.caret {
+  cursor: pointer;
+  -webkit-user-select: none; /* Safari 3.1+ */
+  -moz-user-select: none; /* Firefox 2+ 
+  -ms-user-select: none; /* IE 10+ */
+  user-select: none;
+}
+
+.caret::before {
+  content: "\25B6";
+  color: black;
+  display: inline-block;
+  margin-right: 6px;
+}
+
+.caret-down::before {
+  -ms-transform: rotate(90deg); /* IE 9 */
+  -webkit-transform: rotate(90deg); /* Safari */'
+  transform: rotate(90deg);  
+}
+
+.nested {
+  display: none;
+}
+
+.active {
+  display: block;
+}
+
+
+
+</style>    
+</head>
+<body>
+
+<center>   
+<h2>HTML implementation of SVG methods</h2>
+<object type="image/svg+xml" id="mySVG"  data="svg/glycan-111.svg">
+  Your browser does not support SVG
+</object>
+</center>
+
+
+<!-- The Display properties on hovering is shown here -->
+<div id="infoDiv1">
+    <center>
+     RESIDUE PROPERTIES WILL BE DISPLAYED HERE 
+    </center>
+</div>
+
+<div id="infoDiv2">
+    <center>
+      ENZYMES
+    </center>
+</div>
+
+<!-- Hireachial Menu Structure -->
+
+<ul id="myUL">
+  <li><span class="caret">Nodes</span>
+    <ul id="ul_bev" class="nested">
+    </ul>
+  </li>
+  <li><span class="caret">Enzymes</span>
+    <ul id="ul_tea" class="nested">
+    </ul>
+  </li>
+</ul>
+
+
+<script>
+	window.onload=function(){
+		json2svg();
+	}
+
+</script>
+
+
+</body>
+</html>
