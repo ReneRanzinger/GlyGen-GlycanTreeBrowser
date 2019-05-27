@@ -185,8 +185,8 @@ function json2svg(){
                         }
                       }
                       
-                      sNode[idx].style.fill=color_array[temp_node];
-                      sNode[idx].setAttribute("stroke",'black');    
+                      //sNode[idx].style.fill=color_array[temp_node];--- Highlighting incorrect nodes
+                      //sNode[idx].setAttribute("stroke",'black');    
                   }// END OF LTH LOOP
               });// END OF ONCLICK FUNCTION
                    root1.append(jqHtmlPart);
@@ -236,8 +236,8 @@ function json2svg(){
                         }
                       
                       }
-                      sNode[idx].style.fill=color_array[k];
-                      sNode[idx].setAttribute("stroke",'black');
+                      //sNode[idx].style.fill=color_array[k];---The indexing is incorrect
+                      //sNode[idx].setAttribute("stroke",'black');
                      
 
                });
