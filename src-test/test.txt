@@ -1,0 +1,2 @@
+Here are the test files
+svgindex.html is the first html file that calls several copies of the same file while linking different svg files
