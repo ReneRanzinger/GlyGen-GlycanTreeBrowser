@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script src="js/ajax-utils.js"> </script> 
+<script src="js/svgScrl.js"> </script> 
+<style> 
+
+ 
+body{
+  font-family: "Verdana", "Geneva", "sans-serif";
+}
+
+
+
+/*Giving styling to the svg div*/
+#mySVG {
+    /* width :900px;
+    height:1500px; */
+    max-height: 1295px;
+    position: relative;
+    resize: both;
+    /* top: 200px; */
+    /* top: 70px; */
+    /* left:-200px; */
+    background: white;
+    /* overflow: scroll; */
+    border: 2px solid;
+    border:red;
+    justify-content: center;
+    /* transform: scale(0.5); */
+    background-color: lightcyan;
+    /* transform: translate(1px,100px); */
+    /* transform: scale(0.5); */ 
+    /* top: 25% ; */
+    
+    
+
+}
+#container{
+        height: 600px;
+        width:  860px;
+        /* height:600px;
+        width:500px; */
+        /* padding-left:120px; */
+        /* top: 0px; */
+        
+        display: block;
+        margin:auto;
+        /* margin-left:auto;
+        margin-right:auto; */
+        display: block;
+        border:2px solid #000; 
+        left:0px;
+        /* margin-top: 200px; */
+        overflow: auto;
+        justify-content: center;
+        position:relative;
+        border-color: darkblue;
+        /* width :900px;
+        height:1500px; */
+        
+        /* float: left; */
+}
+
+
+
+
+/*Information display div 1*/
+#infoDiv1 {
+  width: 18%;
+  resize: both;
+  overflow: scroll;
+  position: absolute; 
+  top: 70px;
+  right: 10px;
+  background:  cornsilk;
+  border: 2px solid;
+  border-color :darkmagenta;
+  height: 300px;
+  /* margin-left: 10px; */
+  font-family: Arial, Helvetica, sans-serif;
+  /*font-size: 5px;*/
+  outline: 5px  black;
+  outline-offset: 3px;
+  /* padding-left: 90px; */
+  text-align: center;
+  float: right;
+  
+}
+
+/*Information display div 1*/
+#infoDiv2 {
+  width: 18%;
+  resize: both;
+  overflow:scroll;
+  position: absolute; 
+  top: 370px;
+  right: 10px;
+  height: 300px;
+  background:  cornsilk;
+  border: 2px solid;
+  border-color :darkmagenta;
+  margin-left: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+  /*font-size: 5px;*/
+  outline: 5px black;
+  outline-offset: 3px;
+  /* padding-left: 90px; */
+  text-align: center;
+  float:right;
+  
+}
+
+.collapsible {
+  background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  /* padding: 18px; */
+  /*  */
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+}
+
+.active, .collapsible:hover {
+  /* background-color: white; */
+  /* overflow:auto; */
+  /* height:300px; */
+  color: aquamarine;
+  border: 2 px solid;
+
+}
+
+/* Style the collapsible content. Note: hidden by default */
+#content {
+  width: 210px;
+  resize: both;
+  overflow: auto;
+  position: absolute; 
+  top: 210px;
+  left: 0px;
+
+  
+  /* margin-left: 10px; */
+  font-family: Arial, Helvetica, sans-serif;
+  /*font-size: 10px;*/
+  outline-offset: 3px;
+  /* padding-left: 90px; */
+  text-align: center;
+  padding: 0 18px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+  background-color: #f1f1f1;
+}
+
+/*Placing the svg content inside*/
+.containDiv {
+  width: 250px;
+  height: 270px;
+  float: left;
+  position: relative;
+  margin-left: 35px;
+  margin-right: 30px;
+}
+
+ul, #myUL {
+  list-style-type: none;
+
+}
+
+#myUL {
+  padding: 0;
+  
+  resize: both;
+  /* overflow: auto; NOT WORKING */ 
+  position: absolute; 
+  top: 50px;
+  
+  left: 10px;
+  background: cornsilk;
+  border: 2px solid;
+  border-color :darkmagenta;
+  /* margin-left: 10px; */
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  outline: 5px black;
+  /* outline-offset: 3px; */
+  /* padding-left: 90px; */
+  float: left;
+  height: 603px;
+  justify-content: center;
+  text-align: left;
+}
+#mainPage{
+  border: 3px solid;
+  border-color:black;
+}
+.caret {
+  cursor: pointer;
+  -webkit-user-select: none; /* Safari 3.1+ */
+  -moz-user-select: none; /* Firefox 2+ 
+  -ms-user-select: none; /* IE 10+ */
+  user-select: none;
+}
+
+.caret::before {
+  content: "\25B6";
+  color: black;
+  display: inline-block;
+  /* margin-right: 6px; */
+}
+
+.caret-down::before {
+  -ms-transform: rotate(90deg); /* IE 9 */
+  -webkit-transform: rotate(90deg); /* Safari */
+  transform: rotate(90deg);  
+}
+
+.nested {
+  display: none;
+  left: -25px;
+  /* background-color: aquamarine;  */
+  
+}
+
+.active {
+  display: block;
+}
+
+
+
+</style>    
+</head>
+<body>
+  <center>
+      <h2>HTML implementation of SVG methods</h2>
+  </center>
+    
+<div id="mainPage">  
+
+<div id="container" > 
+    <object type="image/svg+xml" id="mySVG"  data="svg/G01856RL.svg">
+        Your browser does not support SVG
+      </object>
+</div>
+
+
+
+<!-- The Display properties on hovering is shown here -->
+<div id="infoDiv1"> 
+    <center>
+     RESIDUE PROPERTIES WILL BE DISPLAYED HERE 
+    </center>
+</div>
+
+<div id="infoDiv2"> 
+    <center>
+      ENZYMES
+    </center>
+</div>
+
+<!-- Hireachial Menu Structure -->
+
+<ul id="myUL" > 
+  <li><span class="caret">Nodes</span>
+    <ul id="ul_bev" class="nested">
+    </ul>
+  </li>
+  <li><span class="caret">Enzymes</span>
+    <ul id="ul_tea" class="nested">
+    </ul>
+  </li>
+</ul>
+
+<!-- <Button id="text">Zoom-In</Button> -->
+<script>
+  window.onload=function(){
+    json2svg();
+  }
+
+</script>
+</div>
+
+</body>
+</html>

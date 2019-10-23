@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/style.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script src="js/ajax-utils.js"> </script> 
+<script src="js/svgScrl.js"> </script> 
+</head>
+<body>
+  <center>
+      <h2>HTML implementation of SVG methods</h2>
+  </center>
+    
+<div id="mainPage">  
+
+<div id="container" > 
+    <object type="image/svg+xml" id="mySVG"  data="svg/glycan-11 - Copy.svg">
+        Your browser does not support SVG
+      </object>
+</div>
+</div>
+<!-- <div id="info">
+  <input type="text" name="enter" class="enter" value=""  id="textBox1"  />
+  <input type="text" name="enter" class="enter" value=""  id="textBox2"  />
+  <input type="text" name="enter" class="enter" value=""  id="textBox3"  />
+  <input type="text" name="enter" class="enter" value=""  id="textBox4"  />
+  <input type="button" value="click" id="kk" />
+</div> -->
+
+<!-- The Display properties on hovering is shown here -->
+<div id="infoDiv1"> 
+    <center>
+     RESIDUE PROPERTIES WILL BE DISPLAYED HERE 
+    </center>
+</div>
+
+<div id="infoDiv2"> 
+    <center>
+      ENZYMES
+    </center>
+</div> -->
+
+<!-- Hireachial Menu Structure -->
+
+ <ul id="myUL" > 
+  <li><span class="caret">Nodes</span>
+    <ul id="ul_bev" class="nested">
+    </ul>
+  </li>
+  <li><span class="caret">Enzymes</span>
+    <ul id="ul_tea" class="nested">
+    </ul>
+  </li>
+</ul> 
+
+<!-- <Button id="text">Zoom-In</Button> --> -->
+<script>
+  window.onload=function(){
+    json2svg(600,1216,256,100);
+  }
+
+</script>
+</div>
+
+</body>
+</html>
