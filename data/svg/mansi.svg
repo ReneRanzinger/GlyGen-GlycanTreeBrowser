@@ -1,27 +1,6 @@
 <?xml version="1.0"?>
 <!--    <svg viewbox="0 0 400 860" xmlns="http://www.w3.org/2000/svg">-->
  <svg viewbox="400 0 860 400" xmlns="http://www.w3.org/2000/svg">
-    <script type="text/ecmascript">
-    <![CDATA[
-
-    window.onload=function () {
-        var sugarNode = document.getElementsByClassName("sugar");
-        for (var i = 0; i < sugarNode.length; i++) {
-            sugarNode[i].addEventListener('click', mClick, false);
-        }
-    }
-
-    function mClick() {
-        var useExternalMethod = document.getElementById("extFlag").getAttribute("value");
-        if (useExternalMethod == "0") {
-            // perform the function that is appropriate for an isolated svg file (in this examle, go to pubchem)
-            var nodeName = this.getAttribute("sugarName");
-            window.open("https://pubchem.ncbi.nlm.nih.gov/compound/" + nodeName)
-        }
-    }
-
-    ]]>
-  </script>
 
 <desc value="0" id="extFlag"/>
        
