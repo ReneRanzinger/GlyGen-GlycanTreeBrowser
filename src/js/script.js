@@ -3,16 +3,10 @@ function json2svg(parentWidth,parentHeight,leftSide,rightSide,mainPage){
 function divMaker(){
     // Dynamically making DIV's when the main Div id is passed
 $('#mainPage').append($("<div id='container'></div>"));
-$('#container').append($("<object id='mySVG' type='image/svg+xml' data='svg/G67612NO.svg'> your svg </object>")); 
+$('#container').append($("<object id='mySVG' type='image/svg+xml' data=''> your svg </object>")); 
 $(" <ul id='myUL' >  <li><span class= 'caret' >Nodes</span> <ul id='ul_bev' class='nested' ></ul> </li><li><span class='caret'>Enzymes</span>  <ul id='ul_tea' class='nested' ></ul></li></ul> ").appendTo("body");
 $("<div id='infoDiv1'> <center> RESIDUE PROPERTIES WILL BE DISPLAYED HERE </center></div><div id='infoDiv2'> <center>ENZYMES</center></div> </div>").appendTo("body");
-
-
 }
-divMaker();
-init();
-mainFunc();
-
 // INIT FUNCTION 
 //1st para: id of the parent div
 //2nd para: heigth of the parent div
@@ -20,8 +14,14 @@ mainFunc();
 //4th para : width of the leftside panel
 //5th para: width of the rightside panel
 //intizialeviewer("#mainDiv",600,800,100,100,"svgFile");
+
+
+
+
+
+
 function init(){
-    $(function (){
+   // $(function (){
   
         var svgWidth=(parseFloat(parentWidth).toFixed(2))-(parseFloat(leftSide).toFixed(2))-(parseFloat(rightSide).toFixed(2));
         $("#mainPage").css("width",parentWidth);
@@ -46,10 +46,34 @@ function init(){
         $("#infoDiv2").css("top",topLength);
         $("#infoDiv2").css("height",(parentHeight/2)); // Column No3 lower-div
   
-  });
+ // });
+
+}
+function cold_start(){
+    var o = document.body.getElementsByTagName("object")[0];
+    var svgUrl1="https://raw.githubusercontent.com/ReneRanzinger/GlyGen-GlycanTreeBrowser/master/data/svg/new1.svg";
+        $.get(svgUrl1, null, function(data) 
+            {
+                var temp = new Blob([data], {type: 'image/svg+xml'});
+
+                // // If we are replacing a previously generated file we need to
+                // // manually revoke the object URL to avoid memory leaks.
+                // if (textFile !== null) {
+                //     window.URL.revokeObjectURL(textFile);
+                // }
+
+                // returns a URL you can use as a href
+                console.log("temp:"+temp.contentDocument);
+                o.data = window.URL.createObjectURL(temp);
+            },
+            'html');
 
 }
 
+divMaker();
+init();
+cold_start();
+mainFunc();
 
 function deleteData(){
     $("#ul_bev").empty();
@@ -68,29 +92,34 @@ function deleteData(){
      // o.data="svg/small.svg";// local folder
       //svgFetcher();
       var o = document.body.getElementsByTagName("object")[0];
-    //   $.ajax(
-    //     {
-    //         url: "svg/small.svg",
-    //         dataType: 'html',
-    //         type: 'GET',
-    //         async: false,
-    //         cache: false,
-    //         timeout: 30000,
-    //         error: function(){
-    //             return true;
-    //         },
-    //         success: function(data) 
-    //         {         
-                
-    //            o.data=data;
-    //            console.log(o.data+"data is this")
-        
-    //         }
-    //     });
-    //var myele="";
-    o.data="svg/small.svg"
+     // var svgUrl = "https://raw.githubusercontent.com/ReneRanzinger/GlyGen-GlycanTreeBrowser/master/data/svg/G67612NO.svg";
+    //var svgUrl1="https://raw.githubusercontent.com/ReneRanzinger/GlyGen-GlycanTreeBrowser/master/data/svg/new1.svg";
+var svgUrl1="https://raw.githubusercontent.com/ReneRanzinger/GlyGen-GlycanTreeBrowser/master/data/svg/G67612NO.svg";
+        $.get(svgUrl1, null, function(data) 
+            {
+                var temp = new Blob([data], {type: 'image/svg+xml'});
 
-      dataString="data/GOG124.json";
+                // // If we are replacing a previously generated file we need to
+                // // manually revoke the object URL to avoid memory leaks.
+                // if (textFile !== null) {
+                //     window.URL.revokeObjectURL(textFile);
+                // }
+                console.log("this is temp"+temp);
+                // returns a URL you can use as a href
+                o.data = window.URL.createObjectURL(temp);
+                
+            },
+            'html');
+            var svg = svgDoc.querySelector('svg');
+            var box = svg.getAttribute('viewbox');
+            var theArray = box.replace(/^\s+|\s+$/g, '').split(/\s+/);
+            document.getElementById('mySVG').setAttribute("width", theArray[2]);
+            document.getElementById('mySVG').setAttribute("height",theArray[3]);
+        // console.log(o.data+"data is this")
+    //var myele="";
+   // o.data="svg/small.svg"
+     //o.data="svg/mansi.svg";
+      dataString="data/GOG123.json";
       deleteData();
       mainFunc();
     });
@@ -146,7 +175,7 @@ function deleteData(){
             var theArray = box.replace(/^\s+|\s+$/g, '').split(/\s+/);
             document.getElementById('mySVG').setAttribute("width", theArray[2]);
             document.getElementById('mySVG').setAttribute("height",theArray[3]);
-            var len=$("#myUL").width()+'px';
+            //var len=$("#myUL").width()+'px';
 
 
 
@@ -489,7 +518,7 @@ function deleteData(){
          
             
         
-            },100);// END OF THE TIMEOUT FUNCTION
+            },10);// END OF THE TIMEOUT FUNCTION
         }
         var toggler = $(".caret");
         for (i = 0; i < toggler.length; i++) {
