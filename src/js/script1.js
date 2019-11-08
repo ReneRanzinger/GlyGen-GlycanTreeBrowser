@@ -74,7 +74,7 @@ function cold_start(){
     'html').then(function() {
         setTimeout(function () {
             mainFunc();
-         }, 0);
+         }, 100);
     });
 
 }
@@ -125,7 +125,7 @@ function deleteData(){
             'html').then(function() {
                 setTimeout(function () {
                     mainFunc();
-                 }, 0);
+                 }, 100);
             });
            
                 
