@@ -35,7 +35,7 @@ function init(){
         $("#container").css("width",svgWidth);
         $("#container").css("height",parentHeight);
         
-        var info1= +(parseFloat(leftSide).toFixed(2)) - +(parseFloat(1).toFixed(2)) + +(parseFloat(svgWidth).toFixed(2));
+        var info1= +(parseFloat(leftSide).toFixed(2)) - +(parseFloat(4).toFixed(2)) + +(parseFloat(svgWidth).toFixed(2));
         $("#infoDiv1").css("margin-left",info1); // 4 px to be reduced
         $("#infoDiv2").css("margin-left",info1);
         $("#infoDiv1").css("width",rightSide); 
@@ -49,31 +49,39 @@ function init(){
  // });
 
 }
+var cold_start_width="825";
+var cold_start_height="1275";
 function cold_start(){
     var o = document.body.getElementsByTagName("object")[0];
-    var svgUrl1="https://raw.githubusercontent.com/ReneRanzinger/GlyGen-GlycanTreeBrowser/master/data/svg/new1.svg";
-        $.get(svgUrl1, null, function(data) 
-            {
-                var temp = new Blob([data], {type: 'image/svg+xml'});
+    //var svgUrl1="https://raw.githubusercontent.com/ReneRanzinger/GlyGen-GlycanTreeBrowser/master/data/svg/new1.svg";
+   var svgUrl1="https://raw.githubusercontent.com/ReneRanzinger/GlyGen-GlycanTreeBrowser/master/data/svg/G67612NO.svg";
+    $.get(svgUrl1, null, function(data) 
+    {
+        var temp = new Blob([data], {type: 'image/svg+xml'});
 
-                // // If we are replacing a previously generated file we need to
-                // // manually revoke the object URL to avoid memory leaks.
-                // if (textFile !== null) {
-                //     window.URL.revokeObjectURL(textFile);
-                // }
+        // // If we are replacing a previously generated file we need to
+        // // manually revoke the object URL to avoid memory leaks.
+        // if (textFile !== null) {
+        //     window.URL.revokeObjectURL(textFile);
+        // }
 
-                // returns a URL you can use as a href
-                console.log("temp:"+temp.contentDocument);
-                o.data = window.URL.createObjectURL(temp);
-            },
-            'html');
+        // returns a URL you can use as a href
+        o.data = window.URL.createObjectURL(temp);
+        document.getElementById('mySVG').setAttribute("width", cold_start_width);
+        document.getElementById('mySVG').setAttribute("height",cold_start_height);
+        
+    },
+    'html').then(function() {
+        setTimeout(function () {
+            mainFunc();
+         },100);
+    });
 
 }
 
 divMaker();
 init();
 cold_start();
-mainFunc();
 
 function deleteData(){
     $("#ul_bev").empty();
@@ -81,8 +89,8 @@ function deleteData(){
 }
 
 
-  var dataString="data/GOG123.json";
-  $(function() {
+  //var dataString="data/GOG123.json";
+ // $(function() {
     $('#text').on('click', function() {
         
     //   divMaker();
@@ -91,10 +99,13 @@ function deleteData(){
       //var o = document.body.getElementsByTagName("object")[0];
      // o.data="svg/small.svg";// local folder
       //svgFetcher();
+     
       var o = document.body.getElementsByTagName("object")[0];
-     // var svgUrl = "https://raw.githubusercontent.com/ReneRanzinger/GlyGen-GlycanTreeBrowser/master/data/svg/G67612NO.svg";
-    //var svgUrl1="https://raw.githubusercontent.com/ReneRanzinger/GlyGen-GlycanTreeBrowser/master/data/svg/new1.svg";
-var svgUrl1="https://raw.githubusercontent.com/ReneRanzinger/GlyGen-GlycanTreeBrowser/master/data/svg/G67612NO.svg";
+     //var svgUrl1 = "https://raw.githubusercontent.com/ReneRanzinger/GlyGen-GlycanTreeBrowser/master/data/svg/G67612NO.svg";
+    var svgUrl1="https://raw.githubusercontent.com/ReneRanzinger/GlyGen-GlycanTreeBrowser/master/data/svg/new1.svg";
+
+//var svgUrl1="https://raw.githubusercontent.com/ReneRanzinger/GlyGen-GlycanTreeBrowser/master/data/svg/new1.svg";
+//var svgUrl1="https://raw.githubusercontent.com/ReneRanzinger/GlyGen-GlycanTreeBrowser/master/data/svg/new1.svg";
         $.get(svgUrl1, null, function(data) 
             {
                 var temp = new Blob([data], {type: 'image/svg+xml'});
@@ -104,48 +115,56 @@ var svgUrl1="https://raw.githubusercontent.com/ReneRanzinger/GlyGen-GlycanTreeBr
                 // if (textFile !== null) {
                 //     window.URL.revokeObjectURL(textFile);
                 // }
-                console.log("this is temp"+temp);
+                
                 // returns a URL you can use as a href
                 o.data = window.URL.createObjectURL(temp);
                 
+                
+                
             },
-            'html');
-            var svg = svgDoc.querySelector('svg');
-            var box = svg.getAttribute('viewbox');
-            var theArray = box.replace(/^\s+|\s+$/g, '').split(/\s+/);
-            document.getElementById('mySVG').setAttribute("width", theArray[2]);
-            document.getElementById('mySVG').setAttribute("height",theArray[3]);
+            'html').then(function() {
+                setTimeout(function () {
+                    mainFunc();
+                 },100);
+            });
+           
+                
+
+            
+            
+            
         // console.log(o.data+"data is this")
     //var myele="";
    // o.data="svg/small.svg"
      //o.data="svg/mansi.svg";
-      dataString="data/GOG123.json";
+      //dataString="data/GOG123.json";
       deleteData();
-      mainFunc();
+      
     });
-});
+//});
 
 
   function mainFunc(){
-  setTimeout(function(){
+    console.log("Main func executing");
+ // setTimeout(function(){
         
     // Intializing all the required variables
     console.log("I reached here");
-  var i;
-  var string="";
-  var flag=1;// Flag for approaching the first element of the nodes
-  //var flag1=0;// Flag for approaching the first element of the enzymes
-  var flag2=1;// Flag for approaching the first element inside the graying out of all nodes before nodes
-  var flag3=1;// Flag for approaching the first element inside the graying out all nodes before enzymes
-  var html_doc;
-  var html_doc_nodes;
-  var previous;// Storing the previous variable
-  var previous1;// Storing the previous variable
-  var flash=0;
-  var node_index=new Array();
-  var sNode1=new Array();
-  var sBond=new Array();
-  var count=1.0;
+    var i;
+    var string="";
+    var flag=1;// Flag for approaching the first element of the nodes
+    //var flag1=0;// Flag for approaching the first element of the enzymes
+    var flag2=1;// Flag for approaching the first element inside the graying out of all nodes before nodes
+    var flag3=1;// Flag for approaching the first element inside the graying out all nodes before enzymes
+    var html_doc;
+    var html_doc_nodes;
+    var previous;// Storing the previous variable
+    var previous1;// Storing the previous variable
+    var flash=0;
+    var node_index=new Array();
+    var sNode1=new Array();
+    var sBond=new Array();
+    var count=1.0;
     
 
     
@@ -154,6 +173,8 @@ var svgUrl1="https://raw.githubusercontent.com/ReneRanzinger/GlyGen-GlycanTreeBr
             // Extracting the svg and the features from the svg
 
                     var svgObj = document.getElementById("mySVG");
+                    console.log("in main before:")
+                    console.log(document.getElementById('mySVG').contentDocument.querySelector('svg'));
                     var svgDoc = svgObj.contentDocument;
                     var sNode = svgDoc.getElementsByClassName("sugar");
                     var sBond = svgDoc.getElementsByClassName("bond");
@@ -167,9 +188,9 @@ var svgUrl1="https://raw.githubusercontent.com/ReneRanzinger/GlyGen-GlycanTreeBr
                     var textArray=new Array(sNode.length);// Storing the text of each bond
 
             // Function to adjust the size of the SVG and placing it in the center of the SVG
-            $(function(){
+            
             var x= document.getElementById("container");
-            var x=$("#container");   
+            var x=$("#container");
             var svg = svgDoc.querySelector('svg');
             var box = svg.getAttribute('viewbox');
             var theArray = box.replace(/^\s+|\s+$/g, '').split(/\s+/);
@@ -222,7 +243,7 @@ var svgUrl1="https://raw.githubusercontent.com/ReneRanzinger/GlyGen-GlycanTreeBr
                     $("#mySVG").css("top","0px");
                 }
 
-            });
+            
                 
 
 
@@ -329,7 +350,7 @@ var svgUrl1="https://raw.githubusercontent.com/ReneRanzinger/GlyGen-GlycanTreeBr
 
              
             // Making a AJAX CALL to the JSON FILE 
-                    $ajaxUtils.sendGetRequest(dataString, function (res) {
+                    $ajaxUtils.sendGetRequest("https://raw.githubusercontent.com/ReneRanzinger/GlyGen-GlycanTreeBrowser/master/data/json/GOG123.json", function (res) {
 
                 // CREATING ENZYME MAP FOR THE ENZYMES CORRESPONDING THE NODES
                     let enzymeMap = new Map();
@@ -518,7 +539,7 @@ var svgUrl1="https://raw.githubusercontent.com/ReneRanzinger/GlyGen-GlycanTreeBr
          
             
         
-            },10);// END OF THE TIMEOUT FUNCTION
+          //  },100);// END OF THE TIMEOUT FUNCTION
         }
         var toggler = $(".caret");
         for (i = 0; i < toggler.length; i++) {
