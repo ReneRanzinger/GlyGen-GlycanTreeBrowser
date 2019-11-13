@@ -216,7 +216,7 @@ ul, #myUL {
   display: block;
 }
 
-#gtb_medium_svg{
+#small{
   border:black;
   text-align: center;
   background-color: lightcyan;
@@ -225,7 +225,7 @@ ul, #myUL {
   font-weight: bold;
   border: 2px solid;
 }
-#gtb_small_svg{
+#text{
   left: 200 px;
   border:2px solid;
   text-align: center;
