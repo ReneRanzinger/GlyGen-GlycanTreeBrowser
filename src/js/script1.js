@@ -143,6 +143,57 @@ function deleteData(){
     });
 //});
 
+$('#small').on('click', function() {
+        
+    //   divMaker();
+    //   $("#myUL").empty();
+    //   init();
+      //var o = document.body.getElementsByTagName("object")[0];
+     // o.data="svg/small.svg";// local folder
+      //svgFetcher();
+     
+      var o = document.body.getElementsByTagName("object")[0];
+     //var svgUrl1 = "https://raw.githubusercontent.com/ReneRanzinger/GlyGen-GlycanTreeBrowser/master/data/svg/G67612NO.svg";
+    //var svgUrl1="https://raw.githubusercontent.com/ReneRanzinger/GlyGen-GlycanTreeBrowser/master/data/svg/new1.svg";
+var svgUrl1="https://raw.githubusercontent.com/ReneRanzinger/GlyGen-GlycanTreeBrowser/master/data/svg/G00033MO.svg";
+//var svgUrl1="https://raw.githubusercontent.com/ReneRanzinger/GlyGen-GlycanTreeBrowser/master/data/svg/new1.svg";
+//var svgUrl1="https://raw.githubusercontent.com/ReneRanzinger/GlyGen-GlycanTreeBrowser/master/data/svg/new1.svg";
+        $.get(svgUrl1, null, function(data) 
+            {
+                var temp = new Blob([data], {type: 'image/svg+xml'});
+
+                // // If we are replacing a previously generated file we need to
+                // // manually revoke the object URL to avoid memory leaks.
+                // if (textFile !== null) {
+                //     window.URL.revokeObjectURL(textFile);
+                // }
+                
+                // returns a URL you can use as a href
+                o.data = window.URL.createObjectURL(temp);
+                
+                
+                
+            },
+            'html').then(function() {
+                setTimeout(function () {
+                    mainFunc();
+                 },100);
+            });
+           
+                
+
+            
+            
+            
+        // console.log(o.data+"data is this")
+    //var myele="";
+   // o.data="svg/small.svg"
+     //o.data="svg/mansi.svg";
+      //dataString="data/GOG123.json";
+      deleteData();
+      
+    });
+
 
   function mainFunc(){
     console.log("Main func executing");
