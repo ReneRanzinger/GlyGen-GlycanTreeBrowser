@@ -68,7 +68,7 @@ function deleteData(){
     //   $("#myUL").empty();
     //   init();
       var o = document.body.getElementsByTagName("object")[0];
-      o.data="svg/mansi.svg";
+      o.data="svg/medium.svg";
       dataString="data/GOG123.json";
 
       deleteData();
@@ -82,7 +82,7 @@ $(function() {
     //   $("#myUL").empty();
     //   init();
       var o = document.body.getElementsByTagName("object")[0];
-      o.data="svg/G00033MO.svg";
+      o.data="data/small.svg";
       dataString="data/GOG123.json";
       deleteData();
       mainFunc();
