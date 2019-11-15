@@ -3,7 +3,7 @@ function json2svg(parentWidth,parentHeight,leftSide,rightSide,mainPage){
 function divMaker(){
     // Dynamically making DIV's when the main Div id is passed
 $('#mainPage').append($("<div id='container'></div>"));
-$('#container').append($("<object id='mySVG' type='image/svg+xml' data='svg/G67612NO.svg'> your svg </object>")); 
+$('#container').append($("<object id='mySVG' type='image/svg+xml' data='data/G67612NO.svg'> your svg </object>")); 
 $(" <ul id='myUL' >  <li><span class= 'caret' >Nodes</span> <ul id='ul_bev' class='nested' ></ul> </li><li><span class='caret'>Enzymes</span>  <ul id='ul_tea' class='nested' ></ul></li></ul> ").appendTo("body");
 $("<div id='infoDiv1'> <center> RESIDUE PROPERTIES WILL BE DISPLAYED HERE </center></div><div id='infoDiv2'> <center>ENZYMES</center></div> </div>").appendTo("body");
 $("<Button id='gtb_medium_svg'>Medium Size SVG </Button>").appendTo("body");
@@ -68,7 +68,7 @@ function deleteData(){
     //   $("#myUL").empty();
     //   init();
       var o = document.body.getElementsByTagName("object")[0];
-      o.data="svg/medium.svg";
+      o.data="data/medium.svg";
       dataString="data/GOG123.json";
 
       deleteData();
