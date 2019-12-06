@@ -5,14 +5,15 @@ function json2svg(parentWidth,parentHeight,leftSide,rightSide,mainPage){
     $('#mainPage').append($("<div id='container'></div>"));
     // $('#mainPage').append($("<Button id='zoom_in'>   Zoom in </Button>")); 
     // $('#mainPage').append($("<Button id='zoom_out'>  Zoom out </Button>")); 
-    $('#container').append($("<object id='mySVG' type='image/svg+xml' data='svg/G67612NO.svg'> your svg </object>"));
+    $('#container').append($("<object id='mySVG' type='image/svg+xml' data='svg/G67612NO.svg'> </object>"));
     $(" <ul id='myUL' >  <li><span class= 'caret' >Nodes</span> <ul id='ul_bev' class='nested' ></ul> </li><li><span class='caret'>Enzymes</span>  <ul id='ul_tea' class='nested' ></ul></li></ul> ").appendTo("body");
     $("<div id='infoDiv1'> <center> RESIDUE PROPERTIES WILL BE DISPLAYED HERE </center></div><div id='infoDiv2'> <center>ENZYMES</center></div> </div>").appendTo("body");
-    // $("<Button id='gtb_medium_svg'>Medium Size SVG </Button>").appendTo("body");
-    // $("<Button id='gtb_small_svg'>Small Size SVG </Button>").appendTo("body");
-    ($("<Button id='zoom_in'>   + </Button>")).appendTo("body");
-    ($("<Button id='zoom_out'>  - </Button>")).appendTo("body");
-    ($("<Button id='reset'>  Reset </Button>")).appendTo("body");
+   // $("<Button id='gtb_medium_svg'>Medium Size SVG </Button>").appendTo("body");
+    //$("<Button id='gtb_small_svg'>Small Size SVG </Button>").appendTo("body");
+    ($("<Button id='zoom_in'>   - </Button>")).appendTo("body");
+    ($("<Button id='zoom_out'>  + </Button>")).appendTo("body");
+    //($("<Button id='reset'>   RESET </Button>")).appendTo("body");
+     ($("<Button id='reset'>  Reset </Button>")).appendTo("body");
     
     
     }
@@ -82,6 +83,10 @@ function json2svg(parentWidth,parentHeight,leftSide,rightSide,mainPage){
             'transform': 'scale(' + val + ')'  
             
         });
+        $('#mySVG').css({
+            'transform-origin': 'top'  
+       
+        });
     });
     
     var count=1;
@@ -96,6 +101,7 @@ function json2svg(parentWidth,parentHeight,leftSide,rightSide,mainPage){
             'transform': 'scale(' + val + ')'  
             
         });
+        
     });
 
     $('#reset').on('click', function() {
@@ -106,6 +112,8 @@ function json2svg(parentWidth,parentHeight,leftSide,rightSide,mainPage){
             'transform': 'scale(' + val + ')'  
             
         });
+        //$('#mySVG').css("top","0px");
+       
     });
     
       var dataString="data/GOG123.json";
@@ -520,7 +528,7 @@ function json2svg(parentWidth,parentHeight,leftSide,rightSide,mainPage){
     
     
                 }); // END OF AJAX CALL
-                $( "<style> .Nodes { width:100%}  button {background-color: Transparent;background-repeat:no-repeat;border: none;cursor:pointer; border:black; width:100%; text-align:left;}</style> " ).appendTo( "head" );
+                //$( "<style> .Nodes { width:100%}  button {background-color: Transparent;background-repeat:no-repeat;border: none;cursor:pointer; border:black; width:100%; text-align:left;}</style> " ).appendTo( "head" );
     
                 //
                 //var toggler = document.getElementsByClassName("caret");// Getting the elements for the hireachical structures
@@ -542,8 +550,10 @@ function json2svg(parentWidth,parentHeight,leftSide,rightSide,mainPage){
                 });
             }
     }
-    var svg_id;
-    function setParamId(id){
-         svg_id=id;
+    var svg_id,json_id;
+    function setParamId(id1,id2){
+         svg_id=id1;
+         json_id=id2
+        // console.log("The id is :"+svg_id);
     
     }
