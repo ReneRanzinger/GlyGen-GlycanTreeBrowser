@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="css/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script src="js/ajax-utils.js"> </script> 
-    <script src="js/dynamicSVG1.js"> </script> 
+    <script src="js/script_xt.js"> </script> 
 </head>
 <body>
         <center>
@@ -16,12 +16,23 @@
 <!-- Main Div which contains all the other div's inside it -->
 <div id="mainPage">    
 
+
 </div>
+
+
+<Button id='gtb_medium_svg' onclick="setParamId('gtb_medium_svg','GOG123.json')">Medium Size SVG </Button>
+<Button id='gtb_small_svg'  onclick="setParamId('gtb_small_svg','GOG123.json')">Small Size SVG </Button>
+
+
+<!-- Buttons need to be placed inside the svg box -->
+<Button id='zoom_in'> - </Button>
+<Button id='zoom_out'> + </Button>
+<Button id='reset'> Reset </Button>
+
 
 <script>
         window.onload=function(){
-        
-        json2svg(1300,600,200,200,'mainPage');
+        json2svg(1400,600,200,200,'mainPage');
   }
 
 </script>
